@@ -11,9 +11,9 @@ namespace Immortality_Quest.Elements.Interfaces
 {
     internal interface IGroup
     {
-        public int GrpLocationX { get; set; }
+        public int X { get; set; }
 
-        public int GrpLocationY { get; set; }
+        public int Y { get; set; }
 
         public List<Entity> Members { get; set; }
 
@@ -21,5 +21,7 @@ namespace Immortality_Quest.Elements.Interfaces
         public bool CheckGroupDead();
 
         public void AddMember(Entity member);
+
+        public void RemoveMember(Entity member);
     }
 }

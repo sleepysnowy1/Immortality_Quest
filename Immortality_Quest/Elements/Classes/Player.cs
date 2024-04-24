@@ -8,5 +8,16 @@ namespace Immortality_Quest.Elements.Classes
 {
     internal class Player : Entity
     {
+        #region properties 
+        
+        #endregion
+
+        #region Constructors 
+        public Player() : base(100, 100, 50)
+        {
+            
+        }
+  
+        #endregion
     }
 }

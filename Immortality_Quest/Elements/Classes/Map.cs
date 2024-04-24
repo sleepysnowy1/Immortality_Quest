@@ -4,31 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Immortality_Quest.Elements.Interfaces;
-using Immortality_Quest.Elements.Struct;
+
 
 namespace Immortality_Quest.Elements.Classes
 {
     internal class Map : IMap
     {
+        private Tiles[,] _level; 
 
-        public readonly int _x;
+        private readonly int _x;
 
-        public readonly int _y; 
-        public int X { get; }
-        public int Y { get; }
+        private readonly int _y; 
+        public int X { get => _x; }
+        public int Y { get => _y; }
         
-        public Tiles[,] Level { get; set; }
+        public Tiles[,] Level { get => _level; set => _level = value; }
 
         public Map ()
         {
+            _x = 10; 
+            _y = 10;
+
+            _level = new Tiles[_x, _y];
+            
+            GenerateMap(); 
 
         }
 
+        /// <summary>
+        /// This generates a new map. 
+        /// </summary>
         public void GenerateMap()
         {
             Random rnd1 = new Random();
             Random rnd2 = new Random();
 
+            //Create a randomaized postion for the downstairs tile
+            int downStairposX = rnd1.Next(1, X);
+            int downStairposY = rnd2.Next(1, Y);
+
+            //Loop through each row and column of 2D array, the map.
             for (int row = 0; row < X; row++)
             {
                 for (int col = 0; col < Y; col++)
@@ -37,9 +52,10 @@ namespace Immortality_Quest.Elements.Classes
                     {
                         Level[row, col] = new StaircaseEntranceTile();
                     }
-                    else if (rnd1.Next(0, 8) == row && rnd2.Next(0, 8) == col)
+                    else if (downStairposX == row && downStairposY == col) //use randomaized postition and insert at that posstion once loop rotates to that space. 
                     {
                         Level[row, col] = new StaircaseDownTile();
+                        
                     }
                     else
                         Level[row, col] = new RockTile();
@@ -48,9 +64,13 @@ namespace Immortality_Quest.Elements.Classes
             }
         }
 
-
+        /// <summary>
+        /// Simply print the genereted map with different symbols for each tile.
+        /// </summary>
         public void PrintMap()
         {
+
+
             for (int row = 0; row < X; row++)
             {
                 for (int col = 0; col < Y; col++)

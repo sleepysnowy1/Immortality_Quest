@@ -13,6 +13,12 @@ class Program
         level.GenerateMap(); 
         level.PrintMap();
 
+        Group playerGroup = new Group();
+
+        playerGroup.AddMember(new Player());
+
+        playerGroup.MoveGroup(level);
+
         Console.ReadLine(); 
     }
 }

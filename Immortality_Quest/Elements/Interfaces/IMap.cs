@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Immortality_Quest.Elements.Classes;
-using Immortality_Quest.Elements.Struct;
+using Immortality_Quest.Elements;
 
 namespace Immortality_Quest.Elements.Interfaces
 {
