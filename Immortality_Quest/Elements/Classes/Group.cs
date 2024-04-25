@@ -7,23 +7,34 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class Group : IGroup
+    public class Group 
     {
         #region Properties / Backing Fields
         List<Entity> _members = new List<Entity>();
 
-        public delegate void PlayerDirections(); 
+        public Coordinate Loc; 
 
-        public int X { get; set; }
-        public int Y { get ; set; }
+        public delegate Coordinate Directions(); 
+
+        
         public List<Entity> Members { get => _members; set => _members = value; }
 
         #endregion
 
         #region Constructors 
+
         public Group()
         {
-
+            Loc = new Coordinate();
+            Loc.X = 0; 
+            Loc.Y = 0;
+            Members.Add(new Player()); 
+        }
+        public Group(int x, int y)
+        {
+            Loc = new Coordinate();
+            Loc.X = x;
+            Loc.Y = y;             
         }
         #endregion
 
@@ -54,72 +65,92 @@ namespace Immortality_Quest.Elements.Classes
            return Members.TrueForAll(x => x.CheckEntityDead());
         }
 
-        public void MoveGroup(Map map)
+        /// <summary>
+        /// Provides the logic for whether a group can move in a specified direction
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public bool TryMoveGroup(Map map, Directions direction )
         {
-            string? userInput = null;  
-
-            if (Y + 1 >= map.Y)
+            
+            //TODO: move this to another class, this serves as a display provides no value to the purpose of the method
+            if (Y + 1 > map.Y)
+                Console.Write("Nx ");
+            
+            else
                 Console.Write("N ");
 
+
+            if (Y - 1 < map.Y)
+                Console.Write(" Sx");
             else
-                Console.Write("Nx ");
-
-
-            if (Y - 1 <= map.Y)
                 Console.Write(" S ");
-            else
-                Console.Write(" Sx ");
 
 
-            if (X + 1 >= map.X)
-                Console.Write(" E ");
-            else
+            if (Loc.X + 1 > map.X)
                 Console.Write(" Ex ");
-
-
-            if (X - 1 <= map.X)
-
-                Console.WriteLine(" W ");
             else
+                Console.Write(" E ");
+
+
+            if (Loc.X - 1 < map.X)
+
                 Console.WriteLine(" Wx ");
+            else
+                Console.WriteLine(" W ");
 
-            //if (Y > map.Y || Y < map.Y || X < map.X || X > map.X)
-            //    Console.WriteLine("Can't go there!");
+            //determine whether the player can move in the specified direction 
+            if (direction().Y > map.Y || direction().Y < map.Y || direction().X < map.X || direction().X > map.X)
+                return false; //can't move there
 
-            userInput = Console.ReadLine(); 
-
-            if (userInput == "N" || userInput == "n")
+            else if() //get tile and determine whether it can be moved to
             {
 
             }
+            else
+                return true; 
+
+            
+
 
         }
 
-        public bool TryMove(PlayerDirections direction) { }
+        //public bool TryMove(PlayerDirections direction) { }
 
-        private void MoveNorth()
+        public Coordinate MoveNorth()
         {
-            Y += 1;
+            Coordinate coord = new Coordinate();
+            coord.Y += 1;
+            return coord;
         }
 
-        private void MoveSouth()
+        public Coordinate MoveSouth()
         {
-            Y += -1;
+            Coordinate coord = new Coordinate();
+            coord.Y += -1;
+            return coord;
         }
 
-        private void MoveWest()
+        public Coordinate MoveWest()
         {
-            X += -1;
+            Coordinate coord = new Coordinate();
+            Loc.X += -1;
+            return coord;
         }
-        private void MoveEast()
+        public Coordinate MoveEast()
         {
-            X += 1;
+            Coordinate coord = new Coordinate();
+            coord.X += 1;
+        
+        return coord;
         }
 
-        public void MoveGroup()
-        {
-            throw new NotImplementedException();
-        }
+        
+
+
+
+
         #endregion
     }
 }

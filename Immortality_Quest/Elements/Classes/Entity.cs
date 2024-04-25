@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class Entity
+    public class Entity
     {
         public decimal HP { get; set; }
 

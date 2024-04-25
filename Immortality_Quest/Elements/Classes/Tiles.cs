@@ -11,8 +11,28 @@ using Immortality_Quest.Elements.Interfaces;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class Tiles
+    public class Tiles
     {
-        public List<IGroup> groups = new List<IGroup>();
+
+        #region Properties
+        public List<Group> groups = new List<Group>();
+        public bool Walkable { get;  } 
+        #endregion
+
+        #region Constructors 
+        public Tiles(List<Group> groupsInTile, bool walkable)
+        {
+            Walkable = walkable;
+            groups.AddRange(groupsInTile);
+        }
+        #endregion
+        
+        #region Methods 
+        public bool TileWalkable()
+        {
+            return Walkable;
+        }
+        
+        #endregion
     }
 }

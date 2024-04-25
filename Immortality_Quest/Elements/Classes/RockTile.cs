@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class RockTile : Tiles
+    public class RockTile : Tiles
     {
+        #region Constructors 
+        public RockTile(): base(new List<Group>(), false)
+        {
+
+        }
+        #endregion
     }
 }

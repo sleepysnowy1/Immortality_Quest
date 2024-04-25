@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Immortality_Quest.Elements.Interfaces;
@@ -8,7 +9,7 @@ using Immortality_Quest.Elements.Interfaces;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class Map : IMap
+    public class Map 
     {
         private Tiles[,] _level; 
 
@@ -91,6 +92,24 @@ namespace Immortality_Quest.Elements.Classes
                 }
                 Console.WriteLine();
             }
+
+            
+            
         }
+        public Tiles TryGetTile(int x, int y)
+        {
+            Tiles tile = null;
+
+            if(x < this.X || y < this.Y || x > this.X || x < this.Y)
+            {
+                tile = Level[x, y];
+            }
+            return null; 
+            
+        }
+        //public bool TryGetTile(Coordinate coord, out Tiles tile)
+        //{
+
+        //}
     }
 }
