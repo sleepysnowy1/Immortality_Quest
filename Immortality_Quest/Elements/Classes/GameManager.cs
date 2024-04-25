@@ -11,6 +11,7 @@ namespace Immortality_Quest.Elements.Classes
         internal Group PlyrGrp { get; set; }
         internal Map gameMap { get; set; }
 
+        public delegate Coordinate Directions(); 
         public GameManager()
         {
             PlyrGrp = new Group();
@@ -18,43 +19,24 @@ namespace Immortality_Quest.Elements.Classes
         }
 
         #region Methods 
-        public bool TryMoveNorth()
-        {
-            bool canMoveThere; 
-            if(PlyrGrp.Loc.Y + 1 >= gameMap.Y && gameMap.TryGetTile(PlyrGrp.Loc.X, PlyrGrp.Loc.Y + 1).Walkable) 
-            {
-                return canMoveThere = true;
-            }
-            else
-                return canMoveThere = false;
-        }
-
-        public bool TryMoveSouth()
+        public bool TryMove(Group.Directions direction)
         {
             bool canMoveThere;
-            if (PlyrGrp.Loc.Y - 1 <= gameMap.Y && gameMap.TryGetTile(PlyrGrp.Loc.X, PlyrGrp.Loc.Y - 1).Walkable)
+            //determine if the tile is not walkable or out of bounds. Return false if true. 
+            if (direction() >= gameMap && direction() <= gameMap && gameMap.TryGetTile(direction()).Walkable == false)
+            {                                                   //^ TODO: adding OR operator here causes this statement to calculate as true.
+                
+                canMoveThere = false; //cant move there!
+                return canMoveThere;
+            }
+            else //otherwise, the tile is not out of bounds and is walkable so return true
             {
+                PlyrGrp.Loc = direction(); //update player location
+                Console.WriteLine(PlyrGrp.Loc.ToString());
                 return canMoveThere = true;
             }
-            else
-                return canMoveThere = false;
         }
-
-        public bool TryMoveWest()
-        {
-            bool canMoveThere;
-            if (PlyrGrp.Loc.X + 1 >= gameMap.Y && gameMap.TryGetTile(PlyrGrp.Loc.X + 1, PlyrGrp.Loc.Y).Walkable)
-            {
-                return canMoveThere = true;
-            }
-            else
-                return canMoveThere = false;
-        }
-        public bool TryMoveEast()
-        {
-            bool canMoveThere; 
-            if(PlyrGrp.Loc.X - 1 )
-        }
+        
 
         
         #endregion

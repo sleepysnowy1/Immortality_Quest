@@ -98,18 +98,23 @@ namespace Immortality_Quest.Elements.Classes
         }
         public Tiles TryGetTile(int x, int y)
         {
-            Tiles tile = null;
+            Tiles? tile = null;
 
-            if(x < this.X || y < this.Y || x > this.X || x < this.Y)
+            if(x < this.X || y < this.Y || x > this.X || y < this.Y)
             {
                 tile = Level[x, y];
             }
-            return null; 
+            return tile; 
             
         }
-        //public bool TryGetTile(Coordinate coord, out Tiles tile)
-        //{
-
-        //}
+        public Tiles TryGetTile(Coordinate coord)
+        {
+            Tiles? tile = null;
+            if (coord.X < this.X - 1 || coord.Y < this.Y - 1 || coord.X > this.X - 1|| coord.Y < this.Y - 1) //TODO: this statement allows user to go out of bound of array which causes excpetion
+            {
+                tile = Level[coord.X, coord.Y];
+            }
+            return tile;
+        }
     }
 }

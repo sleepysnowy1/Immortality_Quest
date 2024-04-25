@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
+    /// <summary>
+    /// Provides storage for X and Y coordinates. Usually used to store groups location. 
+    /// </summary>
     public struct Coordinate
     {
         #region Properties 
@@ -19,17 +22,20 @@ namespace Immortality_Quest.Elements.Classes
 
         #endregion
 
+        #region Constructors
         public Coordinate(int x, int y)
         {
             _x = x;
             _y = y;
         }
 
+        //create an instance based on the group location. 
         public Coordinate(Group getGrpLocation)
         {
-            _x = getGrpLocation.X;
-            _y = getGrpLocation.Y;
-        }
+            _x = getGrpLocation.Loc.X;
+            _y = getGrpLocation.Loc.Y;
+        } 
+        #endregion
 
         #region Operator overloads
         public static bool operator <(Coordinate coord, Map map)
@@ -50,6 +56,32 @@ namespace Immortality_Quest.Elements.Classes
             }
             else
                 return false;
+        }
+        public static bool operator <=(Coordinate coord, Map map)
+        {
+            if (coord.X <= map.X || coord.Y <= map.Y)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public static bool operator >=(Coordinate coord, Map map)
+        {
+            if (coord.X >= map.X || coord.Y >= map.Y)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        #endregion
+
+        #region Methods 
+        public override string ToString()
+        {
+            return $"(X: {X}) (Y: {Y})";
         }
         #endregion
     }

@@ -8,11 +8,13 @@ namespace Immortality_Quest.Elements.Classes
 {
     public class Entity
     {
+        #region Properties
         public decimal HP { get; set; }
 
         public decimal Mana { get; set; }
 
-        public decimal Initiative { get; set; }
+        public decimal Initiative { get; set; } 
+        #endregion
 
         #region Constructors 
         public Entity(decimal HP, decimal Mana, decimal Initiative)

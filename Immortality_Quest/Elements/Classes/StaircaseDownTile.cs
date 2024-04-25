@@ -8,5 +8,12 @@ namespace Immortality_Quest.Elements.Classes
 {
     internal class StaircaseDownTile : Tiles
     {
+        #region Constructors 
+        public StaircaseDownTile() : base(new List<Group>(), true)
+        {
+
+        }
+        #endregion
+
     }
 }

@@ -7,18 +7,33 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Generate first map 
-        Map level = new Map();
+       GameManager game = new GameManager();
 
-        level.GenerateMap(); 
-        level.PrintMap();
+        game.gameMap.GenerateMap(); 
 
-        Group playerGroup = new Group();
+        
 
-        playerGroup.AddMember(new Player());
+        
 
-        playerGroup.MoveGroup(level);
+        string userInput = string.Empty;
+        do
+        {
+            
 
-        Console.ReadLine(); 
+            game.gameMap.PrintMap();
+
+            GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
+
+            Console.WriteLine(game.PlyrGrp.Loc.ToString());
+
+            userInput = Console.ReadLine();
+            game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp));
+            
+            Console.Clear();
+        }while(true);   
+
+
+
+        
     }
 }

@@ -75,41 +75,12 @@ namespace Immortality_Quest.Elements.Classes
         {
             
             //TODO: move this to another class, this serves as a display provides no value to the purpose of the method
-            if (Y + 1 > map.Y)
-                Console.Write("Nx ");
             
-            else
-                Console.Write("N ");
-
-
-            if (Y - 1 < map.Y)
-                Console.Write(" Sx");
-            else
-                Console.Write(" S ");
-
-
-            if (Loc.X + 1 > map.X)
-                Console.Write(" Ex ");
-            else
-                Console.Write(" E ");
-
-
-            if (Loc.X - 1 < map.X)
-
-                Console.WriteLine(" Wx ");
-            else
-                Console.WriteLine(" W ");
 
             //determine whether the player can move in the specified direction 
-            if (direction().Y > map.Y || direction().Y < map.Y || direction().X < map.X || direction().X > map.X)
-                return false; //can't move there
 
-            else if() //get tile and determine whether it can be moved to
-            {
 
-            }
-            else
-                return true; 
+            return false;
 
             
 
@@ -120,27 +91,27 @@ namespace Immortality_Quest.Elements.Classes
 
         public Coordinate MoveNorth()
         {
-            Coordinate coord = new Coordinate();
+            Coordinate coord = new Coordinate(this);
             coord.Y += 1;
             return coord;
         }
 
         public Coordinate MoveSouth()
         {
-            Coordinate coord = new Coordinate();
+            Coordinate coord = new Coordinate(this);
             coord.Y += -1;
             return coord;
         }
 
         public Coordinate MoveWest()
         {
-            Coordinate coord = new Coordinate();
+            Coordinate coord = new Coordinate(this);
             Loc.X += -1;
             return coord;
         }
         public Coordinate MoveEast()
         {
-            Coordinate coord = new Coordinate();
+            Coordinate coord = new Coordinate(this);
             coord.X += 1;
         
         return coord;
