@@ -9,7 +9,7 @@ namespace Immortality_Quest.Elements.Classes
     public class RockTile : Tiles
     {
         #region Constructors 
-        public RockTile(): base(new List<Group>(), false)
+        public RockTile(): base(new List<Group>(), true)
         {
 
         }

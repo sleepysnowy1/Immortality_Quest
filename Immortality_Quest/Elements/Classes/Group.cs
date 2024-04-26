@@ -1,9 +1,11 @@
-﻿using Immortality_Quest.Elements.Interfaces;
+﻿using Immortality_Quest.Elements.Classes.Inventory_and_items;
+using Immortality_Quest.Elements.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Immortality_Quest.Elements.Classes
 {
@@ -14,9 +16,15 @@ namespace Immortality_Quest.Elements.Classes
 
         public Coordinate Loc; 
 
-        public delegate Coordinate Directions(); 
+        public delegate Coordinate Directions();
 
-        
+        private readonly GroupType grpType;
+
+        public GroupType GroupType { get;  }
+
+        Inventory groupInventory; 
+
+
         public List<Entity> Members { get => _members; set => _members = value; }
 
         #endregion
@@ -29,10 +37,14 @@ namespace Immortality_Quest.Elements.Classes
             Loc.X = 0; 
             Loc.Y = 0;
             Members.Add(new Player()); 
+            groupInventory = new Inventory();
+            GroupType = GroupType.Friendly; 
+            
         }
         public Group(int x, int y)
         {
             Loc = new Coordinate();
+            groupInventory = new Inventory();
             Loc.X = x;
             Loc.Y = y;             
         }
@@ -65,12 +77,7 @@ namespace Immortality_Quest.Elements.Classes
            return Members.TrueForAll(x => x.CheckEntityDead());
         }
 
-        /// <summary>
-        /// Provides the logic for whether a group can move in a specified direction
-        /// </summary>
-        /// <param name="map"></param>
-        /// <param name="direction"></param>
-        /// <returns></returns>
+        
         public bool TryMoveGroup(Map map, Directions direction )
         {
             
@@ -106,7 +113,7 @@ namespace Immortality_Quest.Elements.Classes
         public Coordinate MoveWest()
         {
             Coordinate coord = new Coordinate(this);
-            Loc.X += -1;
+            coord.X += -1;
             return coord;
         }
         public Coordinate MoveEast()
@@ -123,5 +130,12 @@ namespace Immortality_Quest.Elements.Classes
 
 
         #endregion
+    }
+
+    public enum GroupType
+    {
+        Neutral, 
+        Hostile,
+        Friendly
     }
 }

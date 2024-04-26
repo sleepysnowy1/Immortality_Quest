@@ -20,16 +20,17 @@ class Program
         {
             
 
-            game.gameMap.PrintMap();
+            do
+            {
+                game.gameMap.PrintMap();
 
-            GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
+                GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
 
-            Console.WriteLine(game.PlyrGrp.Loc.ToString());
-
-            userInput = Console.ReadLine();
-            game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp));
-            
-            Console.Clear();
+                Console.WriteLine(game.PlyrGrp.Loc.ToString());
+                userInput = Console.ReadLine();
+                
+                Console.Clear(); 
+            } while (game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp)) == false);
         }while(true);   
 
 

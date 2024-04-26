@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Immortality_Quest.Elements.Classes
 {
     /// <summary>
-    /// Provides storage for X and Y coordinates. Usually used to store groups location. 
+    /// Provides storage for X and Y coordinates. Usually used to store groups' locations. 
     /// </summary>
     public struct Coordinate
     {

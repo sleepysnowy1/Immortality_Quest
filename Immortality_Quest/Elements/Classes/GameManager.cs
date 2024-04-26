@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,18 @@ namespace Immortality_Quest.Elements.Classes
         }
 
         #region Methods 
+        /// <summary>
+        /// Provides the logic for whether a group can move in a specified direction
+        /// </summary>
+        /// <param name="direction">Takes in a method which gives the direction to move in. Returns the X and Y postions as a Coordinate struct</param>
+        /// <returns></returns>
         public bool TryMove(Group.Directions direction)
         {
+            
             bool canMoveThere;
-            //determine if the tile is not walkable or out of bounds. Return false if true. 
-            if (direction() >= gameMap && direction() <= gameMap && gameMap.TryGetTile(direction()).Walkable == false)
-            {                                                   //^ TODO: adding OR operator here causes this statement to calculate as true.
-                
+            //determine if the tile is not walkable or out of bounds. Return false if true. //direction() = delegate which represets inserted method which takes player postition and moves in specified direction.
+            if (direction().X > gameMap.X - 1 || direction().X < 0 || direction().Y < 0 || direction().Y > gameMap.Y - 1 || gameMap.TryGetTile(direction()).Walkable == false) 
+            {                                                   
                 canMoveThere = false; //cant move there!
                 return canMoveThere;
             }
