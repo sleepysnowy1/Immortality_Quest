@@ -14,6 +14,8 @@ namespace Immortality_Quest.Elements.Classes
         #region Properties / Backing Fields
         List<Entity> _members = new List<Entity>();
 
+        public Dictionary<Item, int> Inventory = new Dictionary<Item, int>();
+
         public Coordinate Loc; 
 
         public delegate Coordinate Directions();
@@ -81,7 +83,7 @@ namespace Immortality_Quest.Elements.Classes
         public bool TryMoveGroup(Map map, Directions direction )
         {
             
-            //TODO: move this to another class, this serves as a display provides no value to the purpose of the method
+            
             
 
             //determine whether the player can move in the specified direction 

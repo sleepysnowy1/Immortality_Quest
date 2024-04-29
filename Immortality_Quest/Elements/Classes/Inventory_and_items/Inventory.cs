@@ -14,9 +14,9 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         #region Properties & Backing fields 
         List<Item> items;
 
-        public float InventoryWeightLB { get => _inventoryWeightLB; set => _inventoryWeightLB = value; }
+        public virtual float InventoryWeightLB { get => _inventoryWeightLB; set => _inventoryWeightLB = value; }
         private float _inventoryWeightLB;
-        public float WeightLimit { get => _weightLimit; }
+        public virtual float WeightLimit { get => _weightLimit; }
         private readonly float _weightLimit;
         #endregion
 

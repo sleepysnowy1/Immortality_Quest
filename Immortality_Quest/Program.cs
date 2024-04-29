@@ -1,4 +1,5 @@
 ﻿using Immortality_Quest.Elements.Classes;
+using Immortality_Quest.Elements.Classes.Inventory_and_items;
 using Immortality_Quest.Elements.Interfaces;
 
 namespace Immortality_Quest;
@@ -9,11 +10,17 @@ class Program
     {
        GameManager game = new GameManager();
 
-        game.gameMap.GenerateMap(); 
+        game.gameMap.GenerateMap();
 
-        
+        game.PlyrGrp.Inventory.Add(new Sword(), 1);
 
-        
+        BreastPlate breast = new BreastPlate();
+        Sword sword = new Sword();
+
+        Console.WriteLine(breast.ToString());
+        Console.WriteLine(sword.ToString());
+
+
 
         string userInput = string.Empty;
         do

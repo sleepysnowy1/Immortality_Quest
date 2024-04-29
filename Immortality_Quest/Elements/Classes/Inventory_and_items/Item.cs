@@ -10,10 +10,10 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
     {
         #region Properties & Backing Fields 
         private readonly ItemRarity _itemRarity;
-        ItemRarity ItemRarity { get => _itemRarity; }
+        public virtual ItemRarity ItemRarity { get => _itemRarity; }
 
         private readonly float _weightLB; 
-        public float WeightLB { get => _weightLB; }
+        public virtual float WeightLB { get => _weightLB; }
         #endregion
 
         #region Constructors 

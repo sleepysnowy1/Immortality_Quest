@@ -13,7 +13,9 @@ namespace Immortality_Quest.Elements.Classes
 
         public decimal Mana { get; set; }
 
-        public decimal Initiative { get; set; } 
+        public decimal Initiative { get; set; }
+
+        public Equipment equipped = new Equipment();
         #endregion
 
         #region Constructors 

@@ -100,6 +100,7 @@ namespace Immortality_Quest.Elements.Classes
         {
             Tiles? tile = null;
 
+            //TODO the the fact that X is used as an operrand on the right side for the less than condtions may cause incorrect logic and must be fixed
             if(x < this.X || y < this.Y || x > this.X || y < this.Y)
             {
                 tile = Level[x, y];
