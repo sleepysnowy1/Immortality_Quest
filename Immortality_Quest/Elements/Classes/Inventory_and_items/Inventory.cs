@@ -65,6 +65,24 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                 items.Add(newItem);
                 InventoryWeightLB += newItem.WeightLB;
             }
+            else
+            {
+                {
+                    ColorDisplay.WriteLine(ConsoleColor.Red, "Weight Exceeded"); 
+                }
+            }
+        }
+
+        public void ShowInventory()
+        {
+            int count = 1; 
+
+            foreach (var item in items)
+            {
+                Console.WriteLine($"{count}: {item.ItemName}");
+
+                count++; 
+            }
         }
         #endregion
     }

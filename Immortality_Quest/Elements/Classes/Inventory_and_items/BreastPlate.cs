@@ -41,6 +41,9 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                 ArmorPoints += 4;
                 
             }
+
+            ItemName = $"{MetalType} Breast Plate"; 
+
         }// end constructor 
 
         #endregion

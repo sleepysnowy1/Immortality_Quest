@@ -8,17 +8,28 @@ class Program
 {
     static void Main(string[] args)
     {
+
+        //map generation and other stuff
        GameManager game = new GameManager();
 
         game.gameMap.GenerateMap();
 
-        game.PlyrGrp.Inventory.Add(new Sword(), 1);
+        
 
+
+        //test stuff goes here
         BreastPlate breast = new BreastPlate();
         Sword sword = new Sword();
 
         Console.WriteLine(breast.ToString());
         Console.WriteLine(sword.ToString());
+
+        game.PlyrGrp.groupInventory.AddItem(sword); 
+
+        game.PlyrGrp.groupInventory.AddItem(breast);
+
+        game.PlyrGrp.groupInventory.ShowInventory(); 
+
 
 
 

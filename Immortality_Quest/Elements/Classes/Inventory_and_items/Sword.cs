@@ -16,10 +16,11 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
         public CombatMaterialMetal Handle { get; init;  }
 
+        
 
         #region Constructors 
         //Randomize sword makeup on parameterless object intialization 
-        public Sword()
+        public Sword() : base()
         {
             //TODO: refactor this code to make more extensible and less hard coded
             //Could tie damange values directly to the enum. Or try another refacoring 
@@ -107,6 +108,11 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                 damRange.MinDamage += 4;
                 damRange.MaxDamage += 5;
             }
+
+            //set name of sword
+
+            ItemName = $"{Blade} Sword"; 
+
         }//end constructor 
         #endregion
 

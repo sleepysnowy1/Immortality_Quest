@@ -16,6 +16,7 @@ namespace Immortality_Quest.Elements.Classes
         public GameManager()
         {
             PlyrGrp = new Group();
+            
             gameMap = new Map();
         }
 
@@ -41,6 +42,11 @@ namespace Immortality_Quest.Elements.Classes
                 Console.WriteLine(PlyrGrp.Loc.ToString());
                 return canMoveThere = true;
             }
+        }
+
+        public void ShowActions()
+        {
+
         }
         
 

@@ -9,11 +9,14 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
     public abstract class Weapon : Item
     {
         #region Properties & Backing fields 
-        public DamageRange damRange; 
+        public DamageRange damRange;
         #endregion
 
         #region Constructors 
-        
+        public Weapon() : base("Weapon", 0)
+        {
+
+        }
         #endregion
     }
 
@@ -25,12 +28,17 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         private int _maxDamage;
         public int MaxDamage { get => _maxDamage; set => _maxDamage = value; }
 
-        public int GetDamangeInRange()
+        public int CalculateDamange()
         {
             Random rndN = new Random();
 
             return (int)rndN.Next(MinDamage, MaxDamage);
         }
+
+        //public DamageRange GetDamageRange()
+        //{
+            
+        //}
     } 
 
     

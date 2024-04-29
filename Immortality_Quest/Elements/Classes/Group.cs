@@ -14,7 +14,7 @@ namespace Immortality_Quest.Elements.Classes
         #region Properties / Backing Fields
         List<Entity> _members = new List<Entity>();
 
-        public Dictionary<Item, int> Inventory = new Dictionary<Item, int>();
+        
 
         public Coordinate Loc; 
 
@@ -24,7 +24,7 @@ namespace Immortality_Quest.Elements.Classes
 
         public GroupType GroupType { get;  }
 
-        Inventory groupInventory; 
+        public Inventory groupInventory; 
 
 
         public List<Entity> Members { get => _members; set => _members = value; }

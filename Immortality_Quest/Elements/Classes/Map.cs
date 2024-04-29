@@ -77,7 +77,7 @@ namespace Immortality_Quest.Elements.Classes
                 for (int col = 0; col < Y; col++)
                 {
                     if (Level[row, col] is RockTile)
-                    {
+                    { 
                         Console.Write("0");
                     }
                     else if (Level[row, col] is StaircaseDownTile)

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Immortality_Quest.Elements.Classes;
 
 using Immortality_Quest.Elements.Interfaces;
+using Immortality_Quest.Elements.Classes.Inventory_and_items;
 
 namespace Immortality_Quest.Elements.Classes
 {
@@ -16,7 +17,11 @@ namespace Immortality_Quest.Elements.Classes
 
         #region Properties
         public List<Group> groups = new List<Group>();
+
+        public List<Item> RoomItems = new List<Item>();
         public bool Walkable { get;  } 
+
+
         #endregion
 
         #region Constructors 
