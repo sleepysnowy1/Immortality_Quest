@@ -28,7 +28,6 @@ namespace Immortality_Quest.Elements.Classes
         }
         #endregion
 
-
         #region Methods 
         public bool CheckEntityDead() { return HP <= 0; }
 

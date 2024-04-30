@@ -57,7 +57,8 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
             do
             {
-                ColorDisplay.Write(ConsoleColor.Green, "U", ConsoleColor.White, "se", ConsoleColor.Green, "E", ConsoleColor.White, "quip \n"); 
+                ColorDisplay.Write(ConsoleColor.Green, "U", ConsoleColor.White, "se", ConsoleColor.Green, "E", ConsoleColor.White, "quip");
+                ColorDisplay.Write(ConsoleColor.Green, " I", ConsoleColor.White, "nfo\n");
                 userInput = Console.ReadLine();
                 switch (userInput)
                 {
@@ -65,26 +66,41 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                     case "u":
                         UseItem();
                         return actionTaken = true;
-                        break;
+                        
 
                     case "E":
                     case "e":
+                    case "equip":
+                    case "Equip": 
                         game.PlyrGrp.GetMember(game).equipped.EquipItem(this, ref game.PlyrGrp.groupInventory.items);
                         return actionTaken = true;
-                        break;
+
+                    case "I":
+                    case "i":
+                    case "Info":
+                    case "info":
+                        ItemInfo(); 
+                        return actionTaken = true;
+                        
 
                     default:
                         actionTaken = false;
                         break;
+                        
                 }
             } while (actionTaken == false);
 
-
             return true;
+        }
+
+        public override void ItemInfo()
+        {
+            Console.WriteLine(ToString());
+            Console.ReadLine();
         }
         public override string ToString()
         {
-            return $"Armor Points: {ArmorPoints}, MetalType: {MetalType}"; 
+            return $"MetalType: {MetalType}, Armor: {ArmorPoints}"; 
         }
         #endregion
     }

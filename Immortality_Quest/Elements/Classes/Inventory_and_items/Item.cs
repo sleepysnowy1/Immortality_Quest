@@ -31,6 +31,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
         }
 
+        public abstract void ItemInfo();
         public abstract bool ItemInteraction(GameManager game);
         
         #endregion

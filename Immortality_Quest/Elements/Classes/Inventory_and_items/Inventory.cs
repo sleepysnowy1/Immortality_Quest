@@ -89,6 +89,10 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
             do
             {
+                Console.Clear();
+                game.gameMap.PrintMap();
+                GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
+
                 if (items.Count == 0) //if inventory is empty, tell the player. 
                 {
 
@@ -109,6 +113,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                     do
                     {
                         //show items for selection
+                        count = 1;
                         foreach (var item in items)
                         {
                             Console.WriteLine($"{count}: {item.ItemName}");
@@ -118,17 +123,37 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                         }
 
                         //get item
-                        Console.WriteLine("Select item: ");
-                        userInputString = Console.ReadLine(); 
-                        actionTaken = items[Convert.ToInt32(userInputString) - 1].ItemInteraction(game);
+                        Console.Write("Select item: "); ColorDisplay.WriteLine(ConsoleColor.Green, "B",
+                                                                                     ConsoleColor.White, "ack");
+                        userInputString = Console.ReadLine();
+
+                        //TODO change output to use out instead and use regular while loop to test whether to continue loop after returning bool
+                        try
+                        {
+                            actionTaken = items[Convert.ToInt32(userInputString) - 1].ItemInteraction(game); 
+                        }
+                        catch (Exception ex)
+                        {
+                             
+                            actionTaken = false;
+                            if (userInputString != "b" && userInputString != "B")
+                            { 
+                                ColorDisplay.WriteLine(ConsoleColor.Red, "That does nothing.");
+                                Console.ReadLine(); 
+                            }
+
+                        }
 
                         Console.Clear();
 
 
                     } while (userInputString != "b" && userInputString != "B" && actionTaken == false);
-                    userInputString = string.Empty; 
+                     
                 } 
-            } while (userInputString != "b" && userInputString != "B" && actionTaken == false);
+
+                
+
+            } while (userInputString != "b" && userInputString != "B");
         }
         #endregion
     }

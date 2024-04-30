@@ -14,9 +14,7 @@ class Program
 
         game.gameMap.GenerateMap();
 
-        game.PlyrGrp.groupInventory.TryAddItem(new Sword());
-
-        game.PlyrGrp.groupInventory.TryAddItem(new BreastPlate());
+        
 
 
         //test stuff goes here

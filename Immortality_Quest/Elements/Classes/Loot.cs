@@ -22,10 +22,8 @@ namespace Immortality_Quest.Elements.Classes
             {
                 foreach (var item in lootedTile.RoomItems) //add all lootable items in the room to players inventory. Show items as they are looted
                 {
-                    
-                    //Console.WriteLine($"You obtained {item.ItemName}");
 
-                    //ColorDisplay.Write(ConsoleColor.White, "You obtained", ConsoleColor.Blue, $"{item.ItemName}");
+                    ColorDisplay.WriteLine(ConsoleColor.White, "You obtained", ConsoleColor.Blue, $"{item.ItemName}");
                     lootersInventory.Add(item);
                 }
                 Console.ReadLine();
