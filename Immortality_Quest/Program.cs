@@ -14,24 +14,26 @@ class Program
 
         game.gameMap.GenerateMap();
 
-        
+        game.PlyrGrp.groupInventory.TryAddItem(new Sword());
+
+        game.PlyrGrp.groupInventory.TryAddItem(new BreastPlate());
 
 
         //test stuff goes here
-        BreastPlate breast = new BreastPlate();
-        Sword sword = new Sword();
+        //BreastPlate breast = new BreastPlate();
+        //Sword sword = new Sword();
 
-        Console.WriteLine(breast.ToString());
-        Console.WriteLine(sword.ToString());
+        //Console.WriteLine(breast.ToString());
+        //Console.WriteLine(sword.ToString());
 
-        game.PlyrGrp.groupInventory.AddItem(sword); 
+        //game.PlyrGrp.groupInventory.AddItem(sword); 
 
-        game.PlyrGrp.groupInventory.AddItem(breast);
+        //game.PlyrGrp.groupInventory.AddItem(breast);
 
-        game.PlyrGrp.groupInventory.ShowInventory(); 
+        //game.PlyrGrp.groupInventory.ShowInventory(); 
 
 
-
+        
 
         string userInput = string.Empty;
         do
@@ -43,12 +45,13 @@ class Program
                 game.gameMap.PrintMap();
 
                 GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
+                game.ShowActions(game); 
 
                 Console.WriteLine(game.PlyrGrp.Loc.ToString());
-                userInput = Console.ReadLine();
+                
                 
                 Console.Clear(); 
-            } while (game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp)) == false);
+            } while (true);
         }while(true);   
 
 

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 {
-    public abstract class Weapon : Item
+    public abstract class Weapon : Combat
     {
         #region Properties & Backing fields 
         public DamageRange damRange;
         #endregion
 
         #region Constructors 
-        public Weapon() : base("Weapon", 0)
+        public Weapon() 
         {
 
         }

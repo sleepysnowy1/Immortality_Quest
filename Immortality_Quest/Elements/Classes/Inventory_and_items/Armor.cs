@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 {
-    public class Armor : Item
+    public abstract class Armor : Item
     {
         private int _armor = 0;
 
@@ -15,10 +15,14 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         public virtual CombatMaterialMetal MetalType { get; set; }
 
         #region Constructors 
-        public Armor() : base("Armor", 0)
+        public Armor() 
         {
 
         }
-        #endregion  
+        #endregion
+
+        #region Methods 
+        
+        #endregion
     }
 }

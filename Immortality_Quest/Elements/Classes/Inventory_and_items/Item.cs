@@ -21,11 +21,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
         //TODO add in rarity later 
         #region Constructors 
-        public Item(string ItemName, float weightLB)
-        {
-            this.ItemName = ItemName;
-            _weightLB = weightLB;
-        }
+        
 
         #endregion
 
@@ -34,6 +30,9 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         {
 
         }
+
+        public abstract bool ItemInteraction(GameManager game);
+        
         #endregion
     }
 

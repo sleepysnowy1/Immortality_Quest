@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Immortality_Quest.Elements.Classes.Inventory_and_items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,11 @@ namespace Immortality_Quest.Elements.Classes
 
         #region Methods 
         public bool CheckEntityDead() { return HP <= 0; }
+
+        //public void EquipWeapon(Item item)
+        //{
+
+        //}
         #endregion
     }
 }

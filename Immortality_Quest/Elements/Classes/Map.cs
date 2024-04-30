@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Immortality_Quest.Elements.Classes.Inventory_and_items;
 using Immortality_Quest.Elements.Interfaces;
 
 
@@ -59,7 +60,20 @@ namespace Immortality_Quest.Elements.Classes
                         
                     }
                     else
+                    {
                         Level[row, col] = new RockTile();
+                        if (Randomanizer.TrySwordRandomanizer(out Sword sword ))
+                        {
+                            Level[row, col].RoomItems.Add(sword);
+                            //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
+                        }
+
+                        if (Randomanizer.TryBreastPlateRandomanizer(out BreastPlate breastplate))
+                        {
+                            Level[row, col].RoomItems.Add(breastplate);
+                            //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
+                        }
+                    }
 
                 }
             }
@@ -96,7 +110,7 @@ namespace Immortality_Quest.Elements.Classes
             
             
         }
-        public Tiles TryGetTile(int x, int y)
+        public Tiles GetTile(int x, int y)
         {
             Tiles? tile = null;
 

@@ -20,7 +20,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
         #region Constructors 
         //Randomize sword makeup on parameterless object intialization 
-        public Sword() : base()
+        public Sword() 
         {
             //TODO: refactor this code to make more extensible and less hard coded
             //Could tie damange values directly to the enum. Or try another refacoring 
@@ -117,6 +117,46 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         #endregion
 
         #region Methods 
+
+        /// <summary>
+        /// This provides the basis for intereaction with an item after it's selected in the AccessInventory method by the user. 
+        /// </summary>
+        /// <param name="game"></param>
+        public override bool ItemInteraction(GameManager game)
+        {
+            string userInput = string.Empty;
+            bool actionTaken = false;
+            
+
+            do
+            {
+                ColorDisplay.Write(ConsoleColor.Green, "U", ConsoleColor.White, "se", ConsoleColor.Green, "E", ConsoleColor.White, "quip \n"); 
+                userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "U":
+                    case "u":
+                        UseItem();
+                        return actionTaken = true;
+                        break;
+
+                    case "E":
+                    case "e":
+                        game.PlyrGrp.GetMember(game).equipped.EquipItem(this, ref game.PlyrGrp.groupInventory.items);
+                         return actionTaken = true;
+                        break;
+
+                    default:
+                        actionTaken = false;
+                        break;
+                }   
+            } while (actionTaken == false);
+            
+            
+            return true;
+                
+            
+        }
         public override string ToString()
         {
             return $"Blade is {Blade}, Hilt is {Hilt}, Handle is {Handle}, Min damange {damRange.MinDamage}, Max damage {damRange.MaxDamage}"; 

@@ -16,9 +16,8 @@ namespace Immortality_Quest.Elements.Classes
     {
 
         #region Properties
-        public List<Group> groups = new List<Group>();
-
-        public List<Item> RoomItems = new List<Item>();
+        public List<Group> groups = new List<Group>();    
+        public List<Item> RoomItems { get; set; }
         public bool Walkable { get;  } 
 
 
@@ -29,6 +28,8 @@ namespace Immortality_Quest.Elements.Classes
         {
             Walkable = walkable;
             groups.AddRange(groupsInTile);
+
+            RoomItems = new List<Item>();
         }
         #endregion
         

@@ -17,7 +17,15 @@ namespace Immortality_Quest.Elements.Classes
         {
             
         }
-  
+
+        #endregion
+
+        #region Methods 
+        public override string ToString()
+        {
+            return "Player";
+
+        }
         #endregion
     }
 }

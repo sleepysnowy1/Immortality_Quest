@@ -13,29 +13,29 @@ namespace Immortality_Quest.Elements.Classes
         public static void DisplayMovableDirections(Group plygrp, Map map)
         {
             if (plygrp.Loc.Y + 1 > map.Y)
-                Console.Write("Nx ");
+                ColorDisplay.Write(ConsoleColor.Red, "Nx ");
 
             else
-                Console.Write("N ");
+                ColorDisplay.Write(ConsoleColor.Green, "N ");
 
 
             if (plygrp.Loc.Y - 1 < 0)
-                Console.Write(" Sx");
+                ColorDisplay.Write(ConsoleColor.Red, " Sx");
             else
-                Console.Write(" S ");
+                ColorDisplay.Write(ConsoleColor.Green, " S ");
 
 
             if (plygrp.Loc.X + 1 > map.X)
-                Console.Write(" Ex ");
+                ColorDisplay.Write(ConsoleColor.Red, " Ex ");
             else
-                Console.Write(" E ");
+                ColorDisplay.Write(ConsoleColor.Green, " E ");
 
 
             if (plygrp.Loc.X - 1 < 0)
 
-                Console.WriteLine(" Wx ");
+                ColorDisplay.WriteLine(ConsoleColor.Red, " Wx ");
             else
-                Console.WriteLine(" W ");
+                ColorDisplay.WriteLine(ConsoleColor.Green, " W ");
         }
         #endregion
     }

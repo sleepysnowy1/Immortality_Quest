@@ -53,7 +53,10 @@ namespace Immortality_Quest.Elements.Classes
         #endregion
 
         #region Methods 
-
+        public Tiles GetTileAtCurrentLoc(GameManager game)
+        {
+            return game.gameMap.GetTile(Loc.X, Loc.Y); 
+        }
         public void AddMember(Entity member)
         {
             Members.Add(member);
@@ -79,24 +82,6 @@ namespace Immortality_Quest.Elements.Classes
            return Members.TrueForAll(x => x.CheckEntityDead());
         }
 
-        
-        public bool TryMoveGroup(Map map, Directions direction )
-        {
-            
-            
-            
-
-            //determine whether the player can move in the specified direction 
-
-
-            return false;
-
-            
-
-
-        }
-
-        //public bool TryMove(PlayerDirections direction) { }
 
         public Coordinate MoveNorth()
         {
@@ -126,8 +111,32 @@ namespace Immortality_Quest.Elements.Classes
         return coord;
         }
 
-        
+        /// <summary>
+        /// Shows the user a list of group memebers and asks them to pick 1 from the list. 
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns>Returns selected party name.</returns>
+        public Entity GetMember(GameManager game)
+            
+            
+        {
+            string userInput = string.Empty;
+            int count = 1; 
+            foreach (var mem in Members) //display a list of party members numbered 1 2 3 ... n
+            {
+                ColorDisplay.WriteLine(ConsoleColor.White, $"{count}: {mem.ToString()}" );
+                count++;
+            }
 
+            //do
+            //{
+            Console.WriteLine("Select Group Member:"); //get party member from list. 
+            userInput = Console.ReadLine();
+
+            return game.PlyrGrp.Members[Convert.ToInt32(userInput) - 1]; 
+
+            //}while
+        }
 
 
 

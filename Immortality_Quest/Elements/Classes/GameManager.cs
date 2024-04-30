@@ -44,8 +44,35 @@ namespace Immortality_Quest.Elements.Classes
             }
         }
 
-        public void ShowActions()
+        public void ShowActions(GameManager game)
         {
+            string userInput; 
+            ColorDisplay.WriteLine(ConsoleColor.Green, " I", ConsoleColor.White, "ventory", ConsoleColor.Green, "L", ConsoleColor.White, "oot");
+            Tiles tile;
+            userInput = Console.ReadLine();
+
+            switch (userInput)
+            {
+                case "n": case "N":
+                case "s": case "S":
+                case "w":
+                case "W":
+                case "e":
+                case "E": 
+
+                    game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp));
+                    break;
+
+                case "I": case "i":
+                    game.PlyrGrp.groupInventory.ShowInventory(game); 
+                    break;
+
+                case "L": case "l":
+                     
+                    Loot.GetLoot(PlyrGrp.GetTileAtCurrentLoc(game), PlyrGrp.groupInventory.items); 
+
+                    break; 
+            }
 
         }
         

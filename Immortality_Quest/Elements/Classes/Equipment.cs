@@ -33,7 +33,7 @@ namespace Immortality_Quest.Elements.Classes
         /// </summary>
         /// <param name="armor">Armor to be equiped.</param>
         /// <param name="inventory">Inventory the item belongs to.</param>
-        public void EquipItem(Armor armor, ref List<Item> inventory)
+        public void EquipItem(Armor item, ref List<Item> inventory)
         {
 
             //if the armor slot isn't empty then, add the armor back to the entity's inventory
@@ -41,8 +41,8 @@ namespace Immortality_Quest.Elements.Classes
             {
                 inventory.Add(equipedArmor);
             }
-
-            equipedArmor = armor;
+            
+                equipedArmor = item;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Immortality_Quest.Elements.Classes
         /// </summary>
         /// <param name="weapon">Weapon to be equiped</param>
         /// <param name="inventory">Inventory the item belongs to.</param>
-        public void EquipItem(Entity entity, Weapon weapon, ref List<Item> inventory)
+        public void EquipItem(Weapon weapon, ref List<Item> inventory)
         {
 
             //if the weapon slot isn't empty then, add the weapon back to the entity's inventory
@@ -58,8 +58,12 @@ namespace Immortality_Quest.Elements.Classes
             {
                 inventory.Add(equipedWeapon);
             }
-
-            equipedWeapon = weapon;
+            else
+            {
+                inventory.Remove(equipedArmor);
+                equipedWeapon = weapon; 
+            }
+            
         }
 
         public void ShowEquippedWeapon()

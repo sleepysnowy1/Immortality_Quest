@@ -12,7 +12,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
     public class Inventory
     {
         #region Properties & Backing fields 
-        List<Item> items;
+        public List<Item> items;
 
         public virtual float InventoryWeightLB { get => _inventoryWeightLB; set => _inventoryWeightLB = value; }
         private float _inventoryWeightLB;
@@ -58,31 +58,77 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
             
         }
 
-        public void AddItem(Item newItem)
+        public bool TryAddItem(Item newItem)
         {
-            if(InventoryWeightLB + newItem.WeightLB <= WeightLimit)
+            bool couldAddItem; 
+
+            if(InventoryWeightLB + newItem.WeightLB <= WeightLimit) // if adding the new item doesn't exceed carry weight, add item
             {
                 items.Add(newItem);
                 InventoryWeightLB += newItem.WeightLB;
+
+                couldAddItem = true;
+                return couldAddItem;
             }
-            else
+            else //otherwise tell player weight is exceeded.
             {
                 {
                     ColorDisplay.WriteLine(ConsoleColor.Red, "Weight Exceeded"); 
+                    couldAddItem = false;
+                    return couldAddItem;
                 }
             }
         }
 
-        public void ShowInventory()
+        public void ShowInventory(GameManager game)
         {
-            int count = 1; 
+            int count = 1;
+            string userInputString = string.Empty;
+            
+            bool actionTaken = false;
 
-            foreach (var item in items)
+            do
             {
-                Console.WriteLine($"{count}: {item.ItemName}");
+                if (items.Count == 0) //if inventory is empty, tell the player. 
+                {
 
-                count++; 
-            }
+                    do
+                    {
+                        ColorDisplay.WriteLine(ConsoleColor.White, "Inventory is", ConsoleColor.Red, "empty...");
+                        ColorDisplay.WriteLine(ConsoleColor.Green, "B", ConsoleColor.White, "ack");
+                        userInputString = Console.ReadLine();
+
+                    } while (userInputString != "b" && userInputString != "B");
+
+                    break; 
+                }
+                else //otherwise display inventory with index
+                {
+
+
+                    do
+                    {
+                        //show items for selection
+                        foreach (var item in items)
+                        {
+                            Console.WriteLine($"{count}: {item.ItemName}");
+
+
+                            count++;
+                        }
+
+                        //get item
+                        Console.WriteLine("Select item: ");
+                        userInputString = Console.ReadLine(); 
+                        actionTaken = items[Convert.ToInt32(userInputString) - 1].ItemInteraction(game);
+
+                        Console.Clear();
+
+
+                    } while (userInputString != "b" && userInputString != "B" && actionTaken == false);
+                    userInputString = string.Empty; 
+                } 
+            } while (userInputString != "b" && userInputString != "B" && actionTaken == false);
         }
         #endregion
     }
