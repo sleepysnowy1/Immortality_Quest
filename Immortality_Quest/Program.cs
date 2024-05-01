@@ -14,24 +14,18 @@ class Program
 
         game.gameMap.GenerateMap();
 
-        
-
-
-        //test stuff goes here
-        //BreastPlate breast = new BreastPlate();
-        //Sword sword = new Sword();
-
-        //Console.WriteLine(breast.ToString());
-        //Console.WriteLine(sword.ToString());
-
-        //game.PlyrGrp.groupInventory.AddItem(sword); 
-
-        //game.PlyrGrp.groupInventory.AddItem(breast);
-
-        //game.PlyrGrp.groupInventory.ShowInventory(); 
+        //intialize game combat mechanics 
+        GameCombat gameCombat = new GameCombat(game);
 
 
         
+
+        game.PlyrGrp.Members[0].equipped.equipedWeapon = new Sword();
+
+        
+
+
+
 
         string userInput = string.Empty;
         do
@@ -40,7 +34,7 @@ class Program
 
             do
             {
-                game.gameMap.PrintMap();
+                game.gameMap.PrintMap(game);
 
                 GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
                 game.ShowActions(game); 

@@ -80,7 +80,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
             }
         }
 
-        public void ShowInventory(GameManager game)
+        public void AccessInventory(GameManager game)
         {
             int count = 1;
             string userInputString = string.Empty;
@@ -90,7 +90,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
             do
             {
                 Console.Clear();
-                game.gameMap.PrintMap();
+                game.gameMap.PrintMap(game);
                 GameUI.DisplayMovableDirections(game.PlyrGrp, game.gameMap);
 
                 if (items.Count == 0) //if inventory is empty, tell the player. 

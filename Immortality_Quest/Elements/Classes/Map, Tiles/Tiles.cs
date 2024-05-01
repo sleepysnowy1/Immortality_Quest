@@ -16,23 +16,29 @@ namespace Immortality_Quest.Elements.Classes
     {
 
         #region Properties
-        public List<Group> groups = new List<Group>();    
-        public List<Item> RoomItems { get; set; }
-        public bool Walkable { get;  } 
+        //public List<Group> groups = new List<Group>();
+        public IGroupEnemy Enemies { get; set; }
+        public List<Item> RoomItems {  get; set; } 
+        public bool Walkable { get;  }
+
+        public bool Explored { get; set; }
 
 
         #endregion
 
         #region Constructors 
-        public Tiles(List<Group> groupsInTile, bool walkable)
+        public Tiles()
         {
-            Walkable = walkable;
-            groups.AddRange(groupsInTile);
+            
+            RoomItems = new List<Item>();
+            Walkable = true;
+            
+            Enemies = new GroupEnemy();
 
             RoomItems = new List<Item>();
         }
         #endregion
-        
+
         #region Methods 
         public bool TileWalkable()
         {

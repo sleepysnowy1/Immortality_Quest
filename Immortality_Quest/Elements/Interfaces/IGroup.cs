@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Interfaces
 {
-    public interface IGroup : IGroupEnemy
+    public interface IGroup 
     {
         GroupType GroupType { get; }
         List<Entity> Members { get; set; }
 
+        
         void AddMember(Entity member);
         bool CheckGroupDead();
         Entity GetMember(GameManager game);

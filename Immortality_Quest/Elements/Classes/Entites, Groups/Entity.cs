@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    public class Entity
+    public abstract class Entity
     {
         #region Properties
         public decimal HP { get; set; }
@@ -20,16 +20,29 @@ namespace Immortality_Quest.Elements.Classes
         #endregion
 
         #region Constructors 
-        public Entity(decimal HP, decimal Mana, decimal Initiative)
-        {
-            this.HP = HP;   
-            this.Mana = Mana;
-            this.Initiative = Initiative;
-        }
+        //public Entity(decimal HP, decimal Mana, decimal Initiative)
+        //{
+        //    this.HP = HP;   
+        //    this.Mana = Mana;
+        //    this.Initiative = Initiative;
+        //}
         #endregion
 
         #region Methods 
         public bool CheckEntityDead() { return HP <= 0; }
+        public abstract void Attack(Entity target);
+
+        public abstract void TakeDamage(DamageRange damage);
+        public void CheckEntityStatus()
+        {
+            ColorDisplay.Write(ConsoleColor.Red, $"HP: ", ConsoleColor.White, $"{HP}");
+        }
+
+        public void CheckEntityStatus(int count)
+        {
+            ColorDisplay.Write(ConsoleColor.White, $"{count}: {ToString()} ", ConsoleColor.Red, $"HP: ", ConsoleColor.White, $"{HP} \n");
+        }
+        //public abstract void Attack(Entity target);
 
         //public void EquipWeapon(Item item)
         //{

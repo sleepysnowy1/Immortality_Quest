@@ -16,5 +16,7 @@ namespace Immortality_Quest.Elements.Interfaces
         bool CheckGroupDead();
 
         void RemoveMember(Entity member);
+
+        public Entity GetMember(IGroupEnemy group);
     }
 }
