@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    public class Group 
+    public class Group : IGroup
     {
         #region Properties / Backing Fields
         List<Entity> _members = new List<Entity>();
@@ -29,6 +29,10 @@ namespace Immortality_Quest.Elements.Classes
 
         public List<Entity> Members { get => _members; set => _members = value; }
 
+        #endregion
+
+        #region Events
+        
         #endregion
 
         #region Constructors 
@@ -55,7 +59,7 @@ namespace Immortality_Quest.Elements.Classes
         #region Methods 
         public Tiles GetTileAtCurrentLoc(GameManager game)
         {
-            return game.gameMap.GetTile(Loc.X, Loc.Y); 
+            return game.gameMap.TryGetTile(Loc.X, Loc.Y ); 
         }
         public void AddMember(Entity member)
         {
@@ -128,14 +132,27 @@ namespace Immortality_Quest.Elements.Classes
                 count++;
             }
 
-            //do
-            //{
+            do
+            {
+                
             Console.WriteLine("Select Group Member:"); //get party member from list. 
-            userInput = Console.ReadLine();
+                try
+                {
+                    userInput = Console.ReadLine();
 
-            return game.PlyrGrp.Members[Convert.ToInt32(userInput) - 1]; 
+                    return game.PlyrGrp.Members[Convert.ToInt32(userInput) - 1];
+                }
+                catch (Exception ex)
+                {
 
-            //}while
+                    Console.WriteLine("that doesn't work!");
+                    userInput = string.Empty;
+                } 
+
+            } while (true);
+
+            
+            
         }
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Immortality_Quest.Elements.Classes.Entities__Groups;
 using Immortality_Quest.Elements.Classes.Inventory_and_items;
 using Immortality_Quest.Elements.Interfaces;
 
@@ -14,6 +15,7 @@ namespace Immortality_Quest.Elements.Classes
     {
         private Tiles[,] _level; 
 
+        
         private readonly int _x;
 
         private readonly int _y; 
@@ -22,8 +24,9 @@ namespace Immortality_Quest.Elements.Classes
         
         public Tiles[,] Level { get => _level; set => _level = value; }
 
-        public Map ()
+        public Map (GameManager game)
         {
+            game.PlayerMoved += TileExplored;
             _x = 10; 
             _y = 10;
 
@@ -62,16 +65,20 @@ namespace Immortality_Quest.Elements.Classes
                     else
                     {
                         Level[row, col] = new RockTile();
+
+                        //randomize whether tile has items or enemies
                         if (Randomanizer.TrySwordRandomanizer(out Sword sword ))
                         {
                             Level[row, col].RoomItems.Add(sword);
                             //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
+                            Level[row, col].Enemies.Members.Add(new RustedGolem());
                         }
 
                         if (Randomanizer.TryBreastPlateRandomanizer(out BreastPlate breastplate))
                         {
                             Level[row, col].RoomItems.Add(breastplate);
                             //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
+
                         }
                     }
 
@@ -82,7 +89,7 @@ namespace Immortality_Quest.Elements.Classes
         /// <summary>
         /// Simply print the genereted map with different symbols for each tile.
         /// </summary>
-        public void PrintMap()
+        public void PrintMap(GameManager game)
         {
 
 
@@ -90,17 +97,32 @@ namespace Immortality_Quest.Elements.Classes
             {
                 for (int col = 0; col < Y; col++)
                 {
-                    if (Level[row, col] is RockTile)
+                    if (row == game.PlyrGrp.Loc.X && col == game.PlyrGrp.Loc.Y)
+                    {
+                        Console.Write("@");
+                    }
+                    else if (Level[row, col] is RockTile)
                     { 
+                        if(Level[row, col].Explored == true)
                         Console.Write("0");
+                        else
+                            Console.Write(" ");
                     }
                     else if (Level[row, col] is StaircaseDownTile)
                     {
+                        if(Level[row, col].Explored == true)
                         Console.Write("<");
+                        else
+                            Console.Write(" ");
                     }
                     else if (Level[row, col] is StaircaseEntranceTile)
                     {
-                        Console.Write(">");
+                        if (Level[row, col].Explored == true)
+                            Console.Write(">");
+                        else
+                            Console.Write(" ");
+                        
+                            
                     }
 
                 }
@@ -110,19 +132,30 @@ namespace Immortality_Quest.Elements.Classes
             
             
         }
-        public Tiles GetTile(int x, int y)
+        /// <summary>
+        /// Gets the tile at the specified coordinates. 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public Tiles TryGetTile(int x, int y)
         {
             Tiles? tile = null;
 
-            //TODO the the fact that X is used as an operrand on the right side for the less than condtions may cause incorrect logic and must be fixed
-            if(x < this.X || y < this.Y || x > this.X || y < this.Y)
-            {
-                tile = Level[x, y];
-            }
-            return tile; 
+            
+            //if(x <= 0 || y <= 0 || x > this.X - 1 || y > this.Y - 1)
+            //{
+                return tile = Level[x, y];
+            //}
+            //return tile; 
             
         }
-        public Tiles TryGetTile(Coordinate coord)
+        /// <summary>
+        /// Gets the tile at the specified coordinates.
+        /// </summary>
+        /// <param name="coord"></param>
+        /// <returns></returns>
+        public Tiles GetTile(Coordinate coord)
         {
             Tiles? tile = null;
             if (coord.X < this.X - 1 || coord.Y < this.Y - 1 || coord.X > this.X - 1|| coord.Y < this.Y - 1) //TODO: this statement allows user to go out of bound of array which causes excpetion
@@ -130,6 +163,11 @@ namespace Immortality_Quest.Elements.Classes
                 tile = Level[coord.X, coord.Y];
             }
             return tile;
+        }
+
+        public void TileExplored(Coordinate coord, GameManager game)
+        {
+            Level[coord.X, coord.Y].Explored = true;
         }
     }
 }

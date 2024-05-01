@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 {
-    public abstract class Weapon : Combat
+    public abstract class Weapon : CombatItem
     {
         #region Properties & Backing fields 
         public DamageRange damRange;
@@ -22,11 +22,21 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
     public struct DamageRange
     {
+        #region Properties
         private int _minDamage;
         public int MinDamage { get => _minDamage; set => _minDamage = value; }
 
         private int _maxDamage;
         public int MaxDamage { get => _maxDamage; set => _maxDamage = value; }
+        #endregion
+
+        #region Constructors 
+        public DamageRange(int minDamage, int maxDamage)
+        {
+            _minDamage = minDamage;
+            _maxDamage = maxDamage;
+        }
+        #endregion
 
         public int CalculateDamange()
         {

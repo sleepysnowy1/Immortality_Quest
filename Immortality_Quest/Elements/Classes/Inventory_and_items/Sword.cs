@@ -130,15 +130,15 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 
             do
             {
-                ColorDisplay.Write(ConsoleColor.Green, "U", ConsoleColor.White, "se", ConsoleColor.Green, "E", ConsoleColor.White, "quip");
+                ColorDisplay.Write(ConsoleColor.Green, "E", ConsoleColor.White, "quip");
                 ColorDisplay.Write(ConsoleColor.Green, " I", ConsoleColor.White, "nfo\n"); 
                 userInput = Console.ReadLine();
                 switch (userInput)
                 {
-                    case "U":
-                    case "u":
-                        UseItem();
-                        return actionTaken = true;
+                    //case "U":
+                    //case "u":
+                    //    UseItem();
+                    //    return actionTaken = true;
                         
 
                     case "E":

@@ -1,17 +1,16 @@
-﻿using Immortality_Quest.Elements.Classes.Inventory_and_items;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Immortality_Quest.Elements.Classes
+namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 {
     public class Equipment
     {
-        Armor? equipedArmor;
+        public Armor? equipedArmor;
 
-        Weapon? equipedWeapon;
+        public Weapon? equipedWeapon;
 
         #region Methods 
         //public void EquipItem<T>(T Item, ref List<Item> inventory)
@@ -41,11 +40,11 @@ namespace Immortality_Quest.Elements.Classes
             {
                 inventory.Add(equipedArmor);
             }
-            
-           
+
+
             inventory.Remove(armor);
             equipedArmor = armor;
-            
+
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace Immortality_Quest.Elements.Classes
 
             if (equipedWeapon != null)
             {
-                Console.WriteLine($"{equipedWeapon.ItemName}"); 
+                Console.WriteLine($"{equipedWeapon.ItemName}");
             }
             else
             {
@@ -86,7 +85,7 @@ namespace Immortality_Quest.Elements.Classes
 
     }
 
-} 
-    
+}
+
 
 

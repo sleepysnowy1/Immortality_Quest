@@ -9,16 +9,25 @@ namespace Immortality_Quest.Elements.Classes
 {
     public class GameManager
     {
-        internal Group PlyrGrp { get; set; }
-        internal Map gameMap { get; set; }
+        #region Properties
+        public Group PlyrGrp { get; set; }
+        public Map gameMap { get; set; }
+        #endregion
 
-        public delegate Coordinate Directions(); 
+        #region Events & Delegates
+        public delegate Coordinate Directions();
+
+        public event Action<Coordinate, GameManager> PlayerMoved;
+        #endregion
+
+        #region Constructors
         public GameManager()
         {
             PlyrGrp = new Group();
-            
-            gameMap = new Map();
-        }
+
+            gameMap = new Map(this);
+        } 
+        #endregion
 
         #region Methods 
         /// <summary>
@@ -31,7 +40,7 @@ namespace Immortality_Quest.Elements.Classes
             
             bool canMoveThere;
             //determine if the tile is not walkable or out of bounds. Return false if true. //direction() = delegate which represets inserted method which takes player postition and moves in specified direction.
-            if (direction().X > gameMap.X - 1 || direction().X < 0 || direction().Y < 0 || direction().Y > gameMap.Y - 1 || gameMap.TryGetTile(direction()).Walkable == false) 
+            if (direction().X > gameMap.X - 1 || direction().X < 0 || direction().Y < 0 || direction().Y > gameMap.Y - 1 || gameMap.GetTile(direction()).Walkable == false) 
             {                                                   
                 canMoveThere = false; //cant move there!
                 return canMoveThere;
@@ -41,6 +50,7 @@ namespace Immortality_Quest.Elements.Classes
                 PlyrGrp.Loc = direction(); //update player location
                 Console.WriteLine(PlyrGrp.Loc.ToString());
                 return canMoveThere = true;
+
             }
         }
 
@@ -53,6 +63,7 @@ namespace Immortality_Quest.Elements.Classes
 
             switch (userInput)
             {
+                //move if movement direction was entered
                 case "n": case "N":
                 case "s": case "S":
                 case "w":
@@ -61,10 +72,12 @@ namespace Immortality_Quest.Elements.Classes
                 case "E": 
 
                     game.TryMove(GameUtility.GetDirection(userInput, game.PlyrGrp));
+                    game.PlayerMoved.Invoke(game.PlyrGrp.Loc, game);
                     break;
 
+                    //access inventoy if i was pressed
                 case "I": case "i":
-                    game.PlyrGrp.groupInventory.ShowInventory(game); 
+                    game.PlyrGrp.groupInventory.AccessInventory(game); 
                     break;
 
                 case "L": case "l":
