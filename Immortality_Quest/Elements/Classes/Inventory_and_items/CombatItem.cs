@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes.Inventory_and_items
 {
-    public abstract class Combat : Item
+    public abstract class CombatItem : Item
     {
         
 
