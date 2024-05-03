@@ -12,7 +12,7 @@ using Immortality_Quest.Elements.Classes.Inventory_and_items;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    public class Tiles
+    public class Tile
     {
 
         #region Properties
@@ -27,7 +27,7 @@ namespace Immortality_Quest.Elements.Classes
         #endregion
 
         #region Constructors 
-        public Tiles()
+        public Tile()
         {
             
             RoomItems = new List<Item>();

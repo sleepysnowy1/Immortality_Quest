@@ -18,7 +18,7 @@ namespace Immortality_Quest.Elements.Interfaces
         void AddMember(Entity member);
         bool CheckGroupDead();
         Entity GetMember(GameManager game);
-        Tiles GetTileAtCurrentLoc(GameManager game);
+        Tile GetTileAtCurrentLoc(GameManager game);
         Coordinate MoveEast();
         Coordinate MoveNorth();
         Coordinate MoveSouth();

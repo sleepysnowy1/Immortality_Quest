@@ -58,7 +58,7 @@ namespace Immortality_Quest.Elements.Classes
         {
             string userInput; 
             ColorDisplay.WriteLine(ConsoleColor.Green, " I", ConsoleColor.White, "ventory", ConsoleColor.Green, "L", ConsoleColor.White, "oot");
-            Tiles tile;
+            
             userInput = Console.ReadLine();
 
             switch (userInput)

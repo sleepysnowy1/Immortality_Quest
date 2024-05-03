@@ -57,9 +57,10 @@ namespace Immortality_Quest.Elements.Classes
         #endregion
 
         #region Methods 
-        public Tiles GetTileAtCurrentLoc(GameManager game)
+        public Tile GetTileAtCurrentLoc(GameManager game)
         {
-            return game.gameMap.TryGetTile(Loc.X, Loc.Y ); 
+            game.gameMap.TryGetTile(Loc.X, Loc.Y, out Tile tile);
+            return tile; 
         }
         public void AddMember(Entity member)
         {

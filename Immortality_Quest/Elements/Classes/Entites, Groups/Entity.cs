@@ -30,9 +30,25 @@ namespace Immortality_Quest.Elements.Classes
 
         #region Methods 
         public bool CheckEntityDead() { return HP <= 0; }
-        public abstract void Attack(Entity target);
+        public void Attack(Entity target)
+        {
+            decimal _HP = HP;
 
-        public abstract void TakeDamage(DamageRange damage);
+            target.TakeDamage(equipped.equipedWeapon.damRange);
+
+            _HP -= HP;
+
+            Console.WriteLine(target.ToString() + "  took  " + _HP + " damage!"); ;
+        }
+
+        public void TakeDamage(DamageRange damage)
+        {
+            decimal damageTaken;
+
+            damageTaken = Convert.ToDecimal(damage.CalculateDamange());
+
+            HP -= damageTaken;
+        }
         public void CheckEntityStatus()
         {
             ColorDisplay.Write(ConsoleColor.Red, $"HP: ", ConsoleColor.White, $"{HP}");

@@ -19,21 +19,22 @@ namespace Immortality_Quest.Elements.Classes.Entities__Groups
         {
             HP = 25; 
             Mana = 25;
-            Damage = new DamageRange(1, 5);
+            equipped.equipedWeapon = new Sword(); 
         }
         #endregion
-        public override void Attack(Entity target)
-        {
-            target.TakeDamage(Damage);
-        }
-        public override void TakeDamage(DamageRange damage)
-        {
-            decimal damageTaken;
+        //public override void Attack(Entity target)
+        //{
+        //    target.TakeDamage(equipped.equipedWeapon.damRange);
+            
+        //}
+        //public override void TakeDamage(DamageRange damage)
+        //{
+        //    decimal damageTaken;
 
-            damageTaken = Convert.ToDecimal(damage.CalculateDamange());
+        //    damageTaken = Convert.ToDecimal(damage.CalculateDamange());
 
-            HP -= damageTaken;
-        }
+        //    HP -= damageTaken;
+        //}
         public override string ToString()
         {
             return "Rusted Golem";

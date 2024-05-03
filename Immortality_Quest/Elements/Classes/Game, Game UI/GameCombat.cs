@@ -35,13 +35,14 @@ namespace Immortality_Quest.Elements.Classes
         {
             bool turnOver = false;
             string userInput = string.Empty;
-            Entity target; 
+            
             Random rnd = new Random();
             
             ColorDisplay.WriteLine(ConsoleColor.Red, "Danger!", ConsoleColor.White, "Combat is about to commence!");
             Console.ReadLine();
 
-            while(game.PlyrGrp.CheckGroupDead() == false && game.PlyrGrp.GetTileAtCurrentLoc(game).Enemies.CheckGroupDead() == false)
+            //Check if either group is dead, if not battle rages on
+            while(game.PlyrGrp.CheckGroupDead() == false && Enemies.CheckGroupDead() == false)
             {
 
                 //combat time
@@ -52,37 +53,51 @@ namespace Immortality_Quest.Elements.Classes
                     //players turn 
                     switch (userInput)
                     {
+
+                        //attack an enemy 
                         case "Attack": case "attack": case "A": case "a":
-                            game.PlyrGrp.GetMember(game).Attack(Enemies.GetMember(Enemies));
+
+                            for (int i = 0; i < game.PlyrGrp.Members.Count; i++)
+                            {
+                                game.PlyrGrp.GetMember(game).Attack(Enemies.GetMember(Enemies));
+                            }
+
                             turnOver = true;
+
                             break;
                     }
 
-                } while (turnOver == false);
+                } while (turnOver == false); //keep going until an valid action is taken
 
-                Enemies.Members[0].Attack(game.PlyrGrp.Members[0]);
+                //Enemies turn
+                for (int i = 0; i < Enemies.Members.Count; i++)
+                { 
+                    Enemies.Members[i].Attack(game.PlyrGrp.Members[rnd.Next(0, game.PlyrGrp.Members.Count)]); //run through each enemy in the group and randomly select a player to attack each time. 
+                }
             }
 
-            if(game.PlyrGrp.CheckGroupDead() == true)
+            if(game.PlyrGrp.CheckGroupDead() == true) //if the players group is dead then que game over
             {
                 ColorDisplay.WriteLine(ConsoleColor.Red, "You have perished.");
                 Environment.Exit(0);
                 Console.Beep();
             }
-            else
+            else //otherwise it is player victory 
             {
                 ColorDisplay.WriteLine(ConsoleColor.Green, "You obtained victory!!!");
                 Console.Beep();
                 Console.ReadLine(); 
             }
 
-            //foreach(var enemy in Enemies.Members) //TODO add looting of enemies
-            //{
-            //    game.PlyrGrp.groupInventory.items.Add(enemy.equipped.equipedWeapon);
-            //    ColorDisplay.WriteLine(ConsoleColor.White, "You looted", ConsoleColor.Blue, $"{enemy.equipped.equipedWeapon.ItemName}");
-            //}
+            foreach (var enemy in Enemies.Members) //TODO add looting of enemies
+            {
+                game.PlyrGrp.groupInventory.items.Add(enemy.equipped.equipedWeapon);
+                ColorDisplay.WriteLine(ConsoleColor.White, "You looted", ConsoleColor.Blue, $"{enemy.equipped.equipedWeapon.ItemName}");
+            }
 
-            Console.ReadLine() ;
+            Console.ReadLine();
+
+            Enemies.Members.Clear(); //clear the tile of enemies after done. 
 
         }
 

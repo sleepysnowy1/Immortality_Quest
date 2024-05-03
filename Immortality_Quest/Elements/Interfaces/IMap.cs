@@ -13,7 +13,7 @@ namespace Immortality_Quest.Elements.Interfaces
     {
         public int X { get; }
         public int Y { get; }
-        public Tiles[,] Level { get; set; }
+        public Tile[,] Level { get; set; }
 
         public void GenerateMap();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    internal class StaircaseEntranceTile : Tiles
+    internal class StaircaseEntranceTile : Tile
     {
         #region Constructors 
         public StaircaseEntranceTile() 

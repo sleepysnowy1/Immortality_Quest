@@ -15,7 +15,7 @@ namespace Immortality_Quest.Elements.Classes
         /// </summary>
         /// <param name="lootedTile"></param>
         /// <param name="lootersInventory"></param>
-        public static void GetLoot(Tiles lootedTile, List<Item> lootersInventory)
+        public static void GetLoot(Tile lootedTile, List<Item> lootersInventory)
         {
 
             if (lootedTile.RoomItems.Count != 0) // make sure there are lootable items to begin with

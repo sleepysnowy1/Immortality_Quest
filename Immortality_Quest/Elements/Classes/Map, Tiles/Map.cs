@@ -13,7 +13,7 @@ namespace Immortality_Quest.Elements.Classes
 {
     public class Map 
     {
-        private Tiles[,] _level; 
+        private Tile[,] _level; 
 
         
         private readonly int _x;
@@ -22,7 +22,7 @@ namespace Immortality_Quest.Elements.Classes
         public int X { get => _x; }
         public int Y { get => _y; }
         
-        public Tiles[,] Level { get => _level; set => _level = value; }
+        public Tile[,] Level { get => _level; set => _level = value; }
 
         public Map (GameManager game)
         {
@@ -30,7 +30,7 @@ namespace Immortality_Quest.Elements.Classes
             _x = 10; 
             _y = 10;
 
-            _level = new Tiles[_x, _y];
+            _level = new Tile[_x, _y];
             
             GenerateMap(); 
 
@@ -71,7 +71,7 @@ namespace Immortality_Quest.Elements.Classes
                         {
                             Level[row, col].RoomItems.Add(sword);
                             //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
-                            Level[row, col].Enemies.Members.Add(new RustedGolem());
+                            
                         }
 
                         if (Randomanizer.TryBreastPlateRandomanizer(out BreastPlate breastplate))
@@ -79,6 +79,11 @@ namespace Immortality_Quest.Elements.Classes
                             Level[row, col].RoomItems.Add(breastplate);
                             //Level[row, col].RoomItems.Add(Randomanizer.TryBreastPlateRandomanizer()); 
 
+                        }
+
+                        if(Randomanizer.TryRustedGolemSpawn(out RustedGolem spawn))
+                        {
+                            Level[row, col].Enemies.Members.Add(spawn);
                         }
                     }
 
@@ -138,14 +143,24 @@ namespace Immortality_Quest.Elements.Classes
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public Tiles TryGetTile(int x, int y)
+        public bool TryGetTile(int x, int y, out Tile tile)
         {
-            Tiles? tile = null;
+
+            if (Level[x, y] is not null)
+            {
+                tile = Level[x, y];
+                return true;
+            }
+            else
+            {
+                tile = null;
+                return false;
+            }
 
             
             //if(x <= 0 || y <= 0 || x > this.X - 1 || y > this.Y - 1)
             //{
-                return tile = Level[x, y];
+                
             //}
             //return tile; 
             
@@ -155,9 +170,9 @@ namespace Immortality_Quest.Elements.Classes
         /// </summary>
         /// <param name="coord"></param>
         /// <returns></returns>
-        public Tiles GetTile(Coordinate coord)
+        public Tile GetTile(Coordinate coord)
         {
-            Tiles? tile = null;
+            Tile? tile = null;
             if (coord.X < this.X - 1 || coord.Y < this.Y - 1 || coord.X > this.X - 1|| coord.Y < this.Y - 1) //TODO: this statement allows user to go out of bound of array which causes excpetion
             {
                 tile = Level[coord.X, coord.Y];

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Immortality_Quest.Elements.Classes
 {
-    public class RockTile : Tiles
+    public class RockTile : Tile
     {
         #region Constructors 
         public RockTile() 

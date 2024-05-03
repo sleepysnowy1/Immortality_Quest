@@ -16,21 +16,16 @@ class Program
 
         //intialize game combat mechanics 
         GameCombat gameCombat = new GameCombat(game);
-
-
-        
-
+        game.PlyrGrp.Members.Add(new Player()); 
         game.PlyrGrp.Members[0].equipped.equipedWeapon = new Sword();
 
-        
+        game.PlyrGrp.Members[1].equipped.equipedWeapon = new Sword();
 
-
-
+        game.PlyrGrp.groupInventory.items.Add(new Sword());
 
         string userInput = string.Empty;
         do
         {
-            
 
             do
             {
@@ -43,7 +38,9 @@ class Program
                 
                 
                 Console.Clear(); 
+
             } while (true);
+
         }while(true);   
 
 

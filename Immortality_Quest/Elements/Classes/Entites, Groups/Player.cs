@@ -23,19 +23,20 @@ namespace Immortality_Quest.Elements.Classes
 
         #region Methods 
 
-        public override void Attack(Entity target)
-        {
-            target.TakeDamage(equipped.equipedWeapon.damRange);
-        }
+        //public override void Attack(Entity target)
+        //{
+        //    target.TakeDamage(equipped.equipedWeapon.damRange);
+            
+        //}
 
-        public override void TakeDamage(DamageRange damage)
-        {
-            decimal damageTaken;
+        //public override void TakeDamage(DamageRange damage)
+        //{
+        //    decimal damageTaken;
 
-            damageTaken = Convert.ToDecimal(damage.CalculateDamange());
+        //    damageTaken = Convert.ToDecimal(damage.CalculateDamange());
 
-            HP -= damageTaken;
-        }
+        //    HP -= damageTaken;
+        //}
         public override string ToString()
         {
             return "Player";

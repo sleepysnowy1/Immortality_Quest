@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Immortality_Quest.Elements.Classes.Entities__Groups;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         {
             Random num = new Random();
 
-            if (num.Next(1, 101) <= 25)
+            if (num.Next(1, 101) <= 20)
             {
                 sword = new Sword();
                 return true;
@@ -32,7 +33,7 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
         {
             Random num = new Random();
 
-            if (num.Next(1, 101) <= 25)
+            if (num.Next(1, 101) <= 20)
             {
                 breastPlate = new BreastPlate();
                 return true;
@@ -42,7 +43,23 @@ namespace Immortality_Quest.Elements.Classes.Inventory_and_items
                 breastPlate = null; 
                 return false;
             }
-               
+             
+        }
+
+        public static bool TryRustedGolemSpawn(out RustedGolem rustedGolem)
+        {
+            Random num = new Random();
+
+            if(num.Next(1, 101) <= 10)
+            {
+                rustedGolem = new RustedGolem();
+                return true;
+            }
+            else
+            {
+                rustedGolem = null;
+                return false;
+            }
         }
     }
 }
